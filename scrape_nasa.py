@@ -4,27 +4,41 @@ import time
 
 def init_browser():
 	executable_path = {"executable_path": "/usr/local/bin/chromedriver"}
-        return Broweser("chrome", **executable_path, headless=False)
+        return Broweser("chrome", **executable_path, headless=True)
 
 def scrape_info():
+
+    #read in  urls of websites from file
+    list_open = open("sites.txt")
+    read_list = list_open.read()
+    line_in_list = read_list.split("\n")
+
     browser = init_browser()
+    
+    for url in line_in_list:
+            browser.visit(url)
 
-    url = ("https://mars.nasa.gov/news/?page=0&per_page=40&order=publish_date+" +
-            "desc%2Ccreated_at+desc&search=&category=19%2C165%2C184%2C204&blank_scope=Latest")
-    browser.visit(url)
+            time.sleep(1)
 
-    time.sleep(1)
-
-
-    #scrape page
-    html = browser.html
-    soup = bs(html, "html.parser")
-
-    #get data we are looking for
+            soup = bs(urllib2.urlopen(url).read(), 'html.parser')
+            
 
 
-    #close browser session after scraping
-    browser.quit()
+
+            #get data we are looking for
+            news_title = ""
+
+            news_p = ""
+
+
+            #dict to store data
+            mars_data = {
+                    "news_title": news_tile,
+                    "news_p": news_p
+            }
+
+            #close browser session after scraping
+            browser.quit()
 
     #return the results
     return mars_data
