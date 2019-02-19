@@ -1,5 +1,6 @@
 from splinter import Browser
 from bs4 import BeautifulSoup ad bs
+import urllib2
 import time
 
 def init_browser():
