@@ -25,9 +25,6 @@ def scrape_info():
 
             soup = bs(urllib2.urlopen(url).read(), 'html.parser')
             
-
-
-
             #get data we are looking for
             if counter == 1:
                 #get data from first site
@@ -46,7 +43,6 @@ def scrape_info():
                 #get data from 4th site:
                 images = []
 
-
             #close brower session
             browser.quit()
 
@@ -57,7 +53,6 @@ def scrape_info():
             "featured_image_url": featured_image_url,
             "images": images
     }
-
 
     #return the results
     return mars_data
