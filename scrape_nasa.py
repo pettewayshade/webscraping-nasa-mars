@@ -48,7 +48,7 @@ def scrape_info():
 
     #dict to store data
     mars_data = {
-            "news_title": news_tile,
+            "news_title": news_title,
             "news_p": news_p,
             "featured_image_url": featured_image_url,
             "images": images
