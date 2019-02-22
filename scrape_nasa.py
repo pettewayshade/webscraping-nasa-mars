@@ -36,13 +36,20 @@ def scrape_info():
 
             if counter == 2:
                 #get data from second site, JPL Featured Space Image:
-                featured_image_url = soup.find('a', class_='fancybox')['data-fancybox-href']
-
+                url ='https://www.jpl.nasa.gov'
+                li_element = soup.find('li', class_='slide')
+                featured_image_url = li_element.a['data-fancybox-href']
+                featured_image_url = url + featured_image_url
+            
             if counter == 3:
                 #get data from third site
                 url = 'https://space-facts.com/mars/'
                 ldf = pd.read_html(url)
-                mars_facts = '' #ldf[0]
+                ldf =ldf[0]
+                ldf.columns = ["Description", "Values"]
+                ldf.set_index(["Description"])
+                ldf = ldf.to_html()
+                mars_facts = ldf
 
             if counter == 4:
                 #get data from 4th site, Twitter:

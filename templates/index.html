@@ -15,14 +15,28 @@
 			 <h1>Mission to Mars</h1>
 			 <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
 		</div>
-		<p><h2>Lastest Mars News</h2>
-		<h3>{{mars.news_title}}</h3>
-		{{mars.news_p}}</p>
-
-		<p>
-		<h4>Current Weather on Mars</h4>
-		{{mars.mars_weather}}
-		</p>
+		<div class="container">
+			<div class="panel panel-default">
+				<div class="panel-heading"><h2>Lastest Mars News</h2></div>
+				<div class="panel-body"><h4>{{mars.news_title}}</h4>
+					{{mars.news_p}}</p></div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading"><h2>Featured Mars Image</h2></div>
+				<div class="panel-body"><img src="{{mars.featured_image_url}}" 
+					alt="Featured Mars image" style="width:200px;height:300px;"></div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading"><p><h4><b>Current Weather on Mars</b></h4></div>
+				<div class="panel-body">{{mars.mars_weather}}</p></div>
+		
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading"><p><h4><b>Mars Facts</b></h4></div>
+				<div class="panel-body">{{mars.mars_facts|safe}}</div>
+		
+			</div>	
+		</div>
 	</div>
 </body>		
 </html>
