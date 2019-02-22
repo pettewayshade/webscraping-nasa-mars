@@ -1,12 +1,12 @@
 from splinter import Browser
-from bs4 import BeautifulSoup ad bs
-import urllib2
+from bs4 import BeautifulSoup as bs
+import urllib
 import pandas as pd
 import time
 
 def init_browser():
-	executable_path = {"executable_path": "/usr/local/bin/chromedriver"}
-        return Broweser("chrome", **executable_path, headless=True)
+    executable_path = {"executable_path": "/usr/local/bin/chromedriver"}
+    return Browser("chrome", **executable_path, headless=True)
 
 def scrape_info():
 
@@ -19,18 +19,20 @@ def scrape_info():
 
     counter = 0
     for url in line_in_list:
+        try:
             counter +=1
             browser.visit(url)
 
             time.sleep(1)
 
-            soup = bs(urllib2.urlopen(url).read(), 'html.parser')
+            html = browser.html
+            soup = bs(html, 'html.parser')
             
             #get data we are looking for
             if counter == 1:
                 #get data from first site
-                news_title = ""
-                news_p = ""
+                news_title = soup.find('div', class_='content_title').get_text()
+                news_p = soup.find('div', class_='article_teaser_body').get_text()
 
             if counter == 2:
                 #get data from second site
@@ -47,19 +49,27 @@ def scrape_info():
                 text = []
 
             if counter == 5:
-                images = []
-            #close brower session
-            browser.quit()
+                hemisphere_image_urls = []
+        
+        except:
+            continue
 
+            
     #dict to store data
     mars_data = {
             "news_title": news_title,
             "news_p": news_p,
             "mars_facts": mars_facts,
-            "mars_weather": mars_weather,
+            "mars_facts": mars_facts,
             "featured_image_url": featured_image_url,
-            "images": images
+            "images": hemisphere_image_urls
     }
+
+    browser.quit()
 
     #return the results
     return mars_data
+
+if __name__ == '__main__':
+    data = scrape_info()
+    print (data)
