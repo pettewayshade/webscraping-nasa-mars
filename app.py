@@ -1,6 +1,6 @@
 from flask import Flask, render_template,redirect
 from flask_pymongo import PyMongo
-import scarpe_nasa
+import scrape_nasa
 
 app = Flask(__name__)
 

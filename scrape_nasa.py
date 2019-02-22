@@ -30,27 +30,29 @@ def scrape_info():
             
             #get data we are looking for
             if counter == 1:
-                #get data from first site
+                #get data from first site, NASA Mars News Site:
                 news_title = soup.find('div', class_='content_title').get_text()
                 news_p = soup.find('div', class_='article_teaser_body').get_text()
 
             if counter == 2:
-                #get data from second site
-                featured_image_url = ""
+                #get data from second site, JPL Featured Space Image:
+                featured_image_url = soup.find('a', class_='fancybox')['data-fancybox-href']
 
             if counter == 3:
                 #get data from third site
                 url = 'https://space-facts.com/mars/'
                 ldf = pd.read_html(url)
-                mars_facts = ldf[0]
+                mars_facts = '' #ldf[0]
 
             if counter == 4:
-                #get data from 4th site:
-                text = []
+                #get data from 4th site, Twitter:
+                mars_weather = soup.find_all('p', 
+                        class_='TweetTextSize TweetTextSize--normal js-tweet-text tweet-text')[0].get_text()
 
             if counter == 5:
-                hemisphere_image_urls = []
-        
+                imgs = soup.find_all('div', class_="item")
+                imgDict = {}
+                hemisphere_image_urls = list(imgDict)        
         except:
             continue
 
@@ -60,7 +62,7 @@ def scrape_info():
             "news_title": news_title,
             "news_p": news_p,
             "mars_facts": mars_facts,
-            "mars_facts": mars_facts,
+            "mars_weather": mars_weather,
             "featured_image_url": featured_image_url,
             "images": hemisphere_image_urls
     }
