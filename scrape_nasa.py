@@ -1,6 +1,7 @@
 from splinter import Browser
 from bs4 import BeautifulSoup ad bs
 import urllib2
+import pandas as pd
 import time
 
 def init_browser():
@@ -37,12 +38,16 @@ def scrape_info():
 
             if counter == 3:
                 #get data from third site
-                mars_weather = ""
+                url = 'https://space-facts.com/mars/'
+                ldf = pd.read_html(url)
+                mars_facts = ldf[0]
 
             if counter == 4:
                 #get data from 4th site:
-                images = []
+                text = []
 
+            if counter == 5:
+                images = []
             #close brower session
             browser.quit()
 
@@ -50,6 +55,8 @@ def scrape_info():
     mars_data = {
             "news_title": news_title,
             "news_p": news_p,
+            "mars_facts": mars_facts,
+            "mars_weather": mars_weather,
             "featured_image_url": featured_image_url,
             "images": images
     }
