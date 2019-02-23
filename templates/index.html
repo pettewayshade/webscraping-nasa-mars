@@ -10,6 +10,7 @@
 </head>
 
 <body>
+	
 	<div class="container-fluid">
 		<div class="jumbotron text-center">
 			 <h1>Mission to Mars</h1>
@@ -35,7 +36,18 @@
 				<div class="panel-heading"><p><h4><b>Mars Facts</b></h4></div>
 				<div class="panel-body">{{mars.mars_facts|safe}}</div>
 		
-			</div>	
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading"><p><h4><b>Mars Hemispheres</b></h4></div>
+				<div class="panel-body"><img src="{{mars.images['Cerberus Hemisphere']}}.tif"
+					alt="Cerberus Hemisphere" style="float:left;width:400px;height:400px;">
+				<img src="{{mars.images['Schiaparelli Hemisphere']}}.tif"
+				 	alt="Schiaparelli Hemisphere" style="float:right;width:400px;height:400px;"></div>
+				<div class="panel-body"><img src="{{mars.images['Syrtis Major Hemisphere']}}.tif"
+					alt="Syrtis Major Hemisphere" style="float:left;width:400px;height:400px;">
+			 	<img src="{{mars.images['Valles Marineris Hemisphere']}}.tif"
+                                alt="Valles Marineris Hemisphere" style="float:right;width:400px;height:400px;"></div>
+			</div>		
 		</div>
 	</div>
 </body>		

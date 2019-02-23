@@ -57,9 +57,21 @@ def scrape_info():
                         class_='TweetTextSize TweetTextSize--normal js-tweet-text tweet-text')[0].get_text()
 
             if counter == 5:
-                imgs = soup.find_all('div', class_="item")
-                imgDict = {}
-                hemisphere_image_urls = list(imgDict)        
+                url = 'https://astropedia.astrogeology.usgs.gov/download/Mars/Viking/'
+                
+                hemisphere_image_urls = {}
+                keys = ['Cerberus Hemisphere','Schiaparelli Hemisphere',
+                        'Syrtis Major Hemisphere','Valles Marineris Hemisphere']
+                emplist = []
+                for image in soup.find_all('div', class_="item"):
+                        img = image.a.get('href')
+                        img = img.rsplit('/')[-1]
+                        emplist.append(url + img)
+                counter = 0
+                for i in keys:
+                    hemisphere_image_urls[i] = emplist[counter]
+                    counter += 1
+
         except:
             continue
 
