@@ -7,9 +7,28 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>NASA: Mission to Mars</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	
+	 <style>
+        	.panel-resizable {
+			resize: horizontal;
+			overflow: auto}
+		#parent_div_2, #parent_div_3{
+			margin-right:10px;
+			float:right;}
+		#parent_div_1{
+			margin-right:10px;
+			float:left;}
+		#narrow {
+			  float: right;
+				    width: 300px;
+		}
+		#wide {
+			  float: left;
+				    width: 500px);
+		}
+	 </style>
 </head>
-
-<body>
+<body style="background-color:powderblue;">
 	
 	<div class="container-fluid">
 		<div class="jumbotron text-center">
@@ -17,27 +36,39 @@
 			 <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
 		</div>
 		<div class="container">
-			<div class="panel panel-default">
+				<div class="panel panel-default">
 				<div class="panel-heading"><h2>Lastest Mars News</h2></div>
 				<div class="panel-body"><h4>{{mars.news_title}}</h4>
 					{{mars.news_p}}</p></div>
 			</div>
-			<div class="panel panel-default">
+			<div id="parent">
+			<div id="wide">
+			<div class="panel panel-default panel-resizable" style="width:800px">
 				<div class="panel-heading"><h2>Featured Mars Image</h2></div>
 				<div class="panel-body"><img src="{{mars.featured_image_url}}" 
-					alt="Featured Mars image" style="width:200px;height:300px;"></div>
+					alt="Featured Mars image" style="width:300px;height:500px;"></div>
 			</div>
-			<div class="panel panel-default">
+			</div>
+			<div id='narrow'>
+			<div class="panel panel-default panel-resizable" style="width:300px">
 				<div class="panel-heading"><p><h4><b>Current Weather on Mars</b></h4></div>
 				<div class="panel-body">{{mars.mars_weather}}</p></div>
-		
 			</div>
-			<div class="panel panel-default">
+			</div>
+			<br>
+			<div id='narrow'>	
+			<div class="panel panel-default panel-resizable" style="width:300px">
 				<div class="panel-heading"><p><h4><b>Mars Facts</b></h4></div>
 				<div class="panel-body">{{mars.mars_facts|safe}}</div>
 		
 			</div>
-			<div class="panel panel-default">
+			</div>
+			</div>
+		</div>
+	</div>
+			
+			<center>
+			<div class="panel panel-default panel-resizable" style="width:1148px">
 				<div class="panel-heading"><p><h4><b>Mars Hemispheres</b></h4></div>
 				<div class="panel-body"><img src="{{mars.images['Cerberus Hemisphere']}}.tif"
 					alt="Cerberus Hemisphere" style="float:left;width:400px;height:400px;">
@@ -47,7 +78,7 @@
 					alt="Syrtis Major Hemisphere" style="float:left;width:400px;height:400px;">
 			 	<img src="{{mars.images['Valles Marineris Hemisphere']}}.tif"
                                 alt="Valles Marineris Hemisphere" style="float:right;width:400px;height:400px;"></div>
-			</div>		
+			</div></center>
 		</div>
 	</div>
 </body>		
